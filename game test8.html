@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>game test4</title>
+</head>
+
+<body>
+    <h1>スコア</h1>
+      <table id="train-list">
+      </table>
+    <script>
+        window.addEventListener('load', function() {
+            getTrainList();
+        });
+
+        function getTrainList() {
+            fetch('https://93uyq53660.execute-api.ap-northeast-1.amazonaws.com/default/mogura-fe2-2')
+            .then(function (data) {
+                return data.json();
+            })
+            .then(function (value) {
+                //var value = Object.keys( json );
+                //console.log( value.lengt = 10 );
+                //console.log(Object.keys(data['value']).length);
+                for (var i = 0; i < value.length; i++) {
+                var name = value[i].name;
+                var score = value[i].score;
+
+                var row = document.getElementById('train-list').insertRow();
+                row.insertCell().textContent = i + 1;
+                row.insertCell().textContent = name;
+                row.insertCell().textContent = score;
+            }
+        });
+    }
+    </script>
+</body>
+
+</html>
